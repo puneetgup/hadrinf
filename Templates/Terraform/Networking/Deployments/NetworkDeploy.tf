@@ -28,8 +28,17 @@ terraform {
 
 module "vnets-SharedServices" {
   source                                              = "../Hub/"
-  ResourceGroupLocation                               = var.SharedServicesResourceGroupLocation
+  SharedServicesResourceGroupLocation                               = var.SharedServicesResourceGroupLocation
   SharedServices-VNet-AddressSpace                    = var.SharedServices-VNet-AddressSpace
   SharedServices-GatewaySubnet-AddressPrefix          = var.SharedServices-GatewaySubnet-AddressPrefix
   SharedServices-DomainControllerSubnet-AddressPrefix = var.SharedServices-DomainControllerSubnet-AddressPrefix
+}
+
+module "vnets-Spoke1" {
+  source                                              = "../Spoke1/"
+  Spoke1-ResourceGroupLocation                              = var.Spoke1-ResourceGroupLocation
+  Spoke1-VNet-AddressSpace                    = var.Spoke1-VNet-AddressSpace
+  Spoke1-WebSubnet-AddressPrefix          = var.Spoke1-WebSubnet-AddressPrefix
+  Spoke1-AppSubnet-AddressPrefix          = var.Spoke1-AppSubnet-AddressPrefix
+  Spoke1-DataSubnet-AddressPrefix          = var.Spoke1-DataSubnet-AddressPrefix
 }

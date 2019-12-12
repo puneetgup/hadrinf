@@ -1,4 +1,4 @@
-variable "ResourceGroupLocation" {
+variable "SharedServicesResourceGroupLocation" {
   type        = "string"
   description = "The location to deploy the Resource Group."
 }

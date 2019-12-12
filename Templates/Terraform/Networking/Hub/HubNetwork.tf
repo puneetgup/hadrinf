@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "SharedServicesRG" {
   name     = "SharedServicesRG"
-  location = var.ResourceGroupLocation
+  location = var.SharedServicesResourceGroupLocation
 }
 
 resource "azurerm_virtual_network" "SharedServicesVNET" {
