@@ -51,3 +51,24 @@ module "vnets-NonProd" {
   NonProd-AppSubnet-AddressPrefix          = var.NonProd-AppSubnet-AddressPrefix
   NonProd-DataSubnet-AddressPrefix          = var.NonProd-DataSubnet-AddressPrefix
 }
+
+
+module "Hub2Prod-VNET-Peering" {
+  source = "../VNetPeering"
+  HubVNet-RGName = module.vnets-SharedServices.SharedServices-RGName
+  HubVNet-Name = module.vnets-SharedServices.SharedServices-VNet-Name
+  ProdNetwork-ID = module.vnets-Prod.Prod-VNet-ID
+  HubVNet-AllowVNetAccess = var.HubVNet-AllowVNetAccess
+  HubVNet-AllowForwardedTraffic = var.HubVNet-AllowForwardedTraffic
+  HubVNet-AllowGatewayTransit = var.HubVNet-AllowGatewayTransit
+  // depends_on = [
+  //   module.vnets-SharedServices, module.vnets-Prod
+  // ]
+
+  ProdVNet-RGName = module.vnets-Prod.Prod-RGName
+  ProdVNet-Name = module.vnets-Prod.Prod-VNet-Name
+  HubNetwork-ID = module.vnets-SharedServices.SharedServices-VNet-ID
+  ProdVNet-AllowVNetAccess = var.ProdVNet-AllowVNetAccess
+  ProdVNet-AllowForwardedTraffic = var.ProdVNet-AllowForwardedTraffic
+  ProdVNet-AllowGatewayTransit = var.ProdVNet-AllowGatewayTransit
+}

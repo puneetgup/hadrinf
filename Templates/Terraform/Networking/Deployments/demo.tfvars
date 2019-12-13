@@ -16,3 +16,12 @@ NonProd-VNet-AddressSpace = "172.16.0.0/16"
 NonProd-WebSubnet-AddressPrefix = "172.16.1.0/24"
 NonProd-AppSubnet-AddressPrefix = "172.16.2.0/24"
 NonProd-DataSubnet-AddressPrefix  = "172.16.3.0/24"
+
+
+HubVNet-AllowVNetAccess = true
+HubVNet-AllowForwardedTraffic = true
+HubVNet-AllowGatewayTransit = true
+
+ProdVNet-AllowVNetAccess = true
+ProdVNet-AllowForwardedTraffic = true
+ProdVNet-AllowGatewayTransit = false
