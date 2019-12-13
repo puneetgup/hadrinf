@@ -32,6 +32,10 @@ module "vnets-SharedServices" {
   SharedServices-VNet-AddressSpace                    = var.SharedServices-VNet-AddressSpace
   SharedServices-GatewaySubnet-AddressPrefix          = var.SharedServices-GatewaySubnet-AddressPrefix
   SharedServices-DomainControllerSubnet-AddressPrefix = var.SharedServices-DomainControllerSubnet-AddressPrefix
+
+  Hub-ERGateway-ActiveActiveEnabled  = var.Hub-ERGateway-ActiveActiveEnabled
+  Hub-ERGateway-BGPEnabled = var.Hub-ERGateway-BGPEnabled
+  Hub-ERGateway-SKU = var.Hub-ERGateway-SKU
 }
 
 module "vnets-Prod" {

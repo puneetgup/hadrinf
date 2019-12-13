@@ -119,3 +119,16 @@ variable "NonProdVNet-AllowGatewayTransit" {
   type        = string
   description = "If you have a virtual network gateway attached to this virtual network and want to allow traffic from the peered virtual network to flow through the gateway. "
 }
+
+variable "Hub-ERGateway-ActiveActiveEnabled" {
+  type = string
+  description = "Only select Enable active-active mode if you are creating an active-active gateway configuration."
+}
+variable "Hub-ERGateway-BGPEnabled" {
+  type = string
+  description = "'True' or 'False' whether BGP is enabled."
+}
+variable "Hub-ERGateway-SKU" {
+  type = string
+  description = "Set the specific ExpressRoute Gateway SKU. Available options include: 'Standard', 'HighPerformance', or 'UltraPerformance'"
+}

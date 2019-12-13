@@ -29,3 +29,7 @@ ProdVNet-AllowGatewayTransit = false
 NonProdVNet-AllowVNetAccess = true
 NonProdVNet-AllowForwardedTraffic = true
 NonProdVNet-AllowGatewayTransit = false
+
+Hub-ERGateway-ActiveActiveEnabled  = false
+Hub-ERGateway-BGPEnabled = true
+Hub-ERGateway-SKU = "Standard"
