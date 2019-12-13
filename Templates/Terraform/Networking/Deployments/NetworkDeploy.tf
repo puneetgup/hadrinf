@@ -34,11 +34,20 @@ module "vnets-SharedServices" {
   SharedServices-DomainControllerSubnet-AddressPrefix = var.SharedServices-DomainControllerSubnet-AddressPrefix
 }
 
-module "vnets-Spoke1" {
-  source                                              = "../Spoke1/"
-  Spoke1-ResourceGroupLocation                              = var.Spoke1-ResourceGroupLocation
-  Spoke1-VNet-AddressSpace                    = var.Spoke1-VNet-AddressSpace
-  Spoke1-WebSubnet-AddressPrefix          = var.Spoke1-WebSubnet-AddressPrefix
-  Spoke1-AppSubnet-AddressPrefix          = var.Spoke1-AppSubnet-AddressPrefix
-  Spoke1-DataSubnet-AddressPrefix          = var.Spoke1-DataSubnet-AddressPrefix
+module "vnets-Prod" {
+  source                                              = "../Spoke-Prod/"
+  Prod-ResourceGroupLocation                              = var.Prod-ResourceGroupLocation
+  Prod-VNet-AddressSpace                    = var.Prod-VNet-AddressSpace
+  Prod-WebSubnet-AddressPrefix          = var.Prod-WebSubnet-AddressPrefix
+  Prod-AppSubnet-AddressPrefix          = var.Prod-AppSubnet-AddressPrefix
+  Prod-DataSubnet-AddressPrefix          = var.Prod-DataSubnet-AddressPrefix
+}
+
+module "vnets-NonProd" {
+  source                                              = "../Spoke-NonProd/"
+  NonProd-ResourceGroupLocation                              = var.NonProd-ResourceGroupLocation
+  NonProd-VNet-AddressSpace                    = var.NonProd-VNet-AddressSpace
+  NonProd-WebSubnet-AddressPrefix          = var.NonProd-WebSubnet-AddressPrefix
+  NonProd-AppSubnet-AddressPrefix          = var.NonProd-AppSubnet-AddressPrefix
+  NonProd-DataSubnet-AddressPrefix          = var.NonProd-DataSubnet-AddressPrefix
 }
