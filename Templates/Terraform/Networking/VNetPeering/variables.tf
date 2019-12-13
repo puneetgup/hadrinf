@@ -1,15 +1,15 @@
 variable "HubVNet-RGName" {
-  type = string
+  type        = string
   description = "The Resource Group nane that contains the Hub VNet object (since this is where the Peering object will be created)."
 }
 
 variable "HubVNet-Name" {
-  type = string
+  type        = string
   description = "The Hub VNet Name (for peering 'from')."
 }
 
 variable "HubNetwork-ID" {
-  type = string
+  type        = string
   description = "The Prod VNet ID (for peering 'to')."
 }
 
@@ -31,17 +31,17 @@ variable "HubVNet-AllowGatewayTransit" {
 
 
 variable "ProdVNet-RGName" {
-  type = string
+  type        = string
   description = "The Resource Group nane that contains the Prod VNet object (since this is where the Peering object will be created)."
 }
 
 variable "ProdVNet-Name" {
-  type = string
+  type        = string
   description = "The Hub VNet Name (for peering 'from')."
 }
 
 variable "ProdNetwork-ID" {
-  type = string
+  type        = string
   description = "The Prod VNet ID (for peering 'to')."
 }
 
@@ -63,17 +63,17 @@ variable "ProdVNet-AllowGatewayTransit" {
 
 
 variable "NonProdVNet-RGName" {
-  type = string
+  type        = string
   description = "The Resource Group nane that contains the NonProd VNet object (since this is where the Peering object will be created)."
 }
 
 variable "NonProdVNet-Name" {
-  type = string
+  type        = string
   description = "The Hub VNet Name (for peering 'from')."
 }
 
 variable "NonProdNetwork-ID" {
-  type = string
+  type        = string
   description = "The NonProd VNet ID (for peering 'to')."
 }
 

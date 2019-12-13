@@ -19,14 +19,14 @@ variable "SharedServices-DomainControllerSubnet-AddressPrefix" {
 }
 
 variable "Hub-ERGateway-ActiveActiveEnabled" {
-  type = string
+  type        = string
   description = "Only select Enable active-active mode if you are creating an active-active gateway configuration."
 }
 variable "Hub-ERGateway-BGPEnabled" {
-  type = string
+  type        = string
   description = "'True' or 'False' whether BGP is enabled."
 }
 variable "Hub-ERGateway-SKU" {
-  type = string
+  type        = string
   description = "Set the specific ExpressRoute Gateway SKU. Available options include: 'Standard', 'HighPerformance', or 'UltraPerformance'"
 }

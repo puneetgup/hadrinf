@@ -28,58 +28,58 @@ terraform {
 
 module "vnets-SharedServices" {
   source                                              = "../Hub/"
-  SharedServicesResourceGroupLocation                               = var.SharedServicesResourceGroupLocation
+  SharedServicesResourceGroupLocation                 = var.SharedServicesResourceGroupLocation
   SharedServices-VNet-AddressSpace                    = var.SharedServices-VNet-AddressSpace
   SharedServices-GatewaySubnet-AddressPrefix          = var.SharedServices-GatewaySubnet-AddressPrefix
   SharedServices-DomainControllerSubnet-AddressPrefix = var.SharedServices-DomainControllerSubnet-AddressPrefix
 
-  Hub-ERGateway-ActiveActiveEnabled  = var.Hub-ERGateway-ActiveActiveEnabled
-  Hub-ERGateway-BGPEnabled = var.Hub-ERGateway-BGPEnabled
-  Hub-ERGateway-SKU = var.Hub-ERGateway-SKU
+  Hub-ERGateway-ActiveActiveEnabled = var.Hub-ERGateway-ActiveActiveEnabled
+  Hub-ERGateway-BGPEnabled          = var.Hub-ERGateway-BGPEnabled
+  Hub-ERGateway-SKU                 = var.Hub-ERGateway-SKU
 }
 
 module "vnets-Prod" {
-  source                                              = "../Spoke-Prod/"
-  Prod-ResourceGroupLocation                              = var.Prod-ResourceGroupLocation
-  Prod-VNet-AddressSpace                    = var.Prod-VNet-AddressSpace
-  Prod-WebSubnet-AddressPrefix          = var.Prod-WebSubnet-AddressPrefix
-  Prod-AppSubnet-AddressPrefix          = var.Prod-AppSubnet-AddressPrefix
-  Prod-DataSubnet-AddressPrefix          = var.Prod-DataSubnet-AddressPrefix
+  source                        = "../Spoke-Prod/"
+  Prod-ResourceGroupLocation    = var.Prod-ResourceGroupLocation
+  Prod-VNet-AddressSpace        = var.Prod-VNet-AddressSpace
+  Prod-WebSubnet-AddressPrefix  = var.Prod-WebSubnet-AddressPrefix
+  Prod-AppSubnet-AddressPrefix  = var.Prod-AppSubnet-AddressPrefix
+  Prod-DataSubnet-AddressPrefix = var.Prod-DataSubnet-AddressPrefix
 }
 
 module "vnets-NonProd" {
-  source                                              = "../Spoke-NonProd/"
-  NonProd-ResourceGroupLocation                              = var.NonProd-ResourceGroupLocation
-  NonProd-VNet-AddressSpace                    = var.NonProd-VNet-AddressSpace
-  NonProd-WebSubnet-AddressPrefix          = var.NonProd-WebSubnet-AddressPrefix
-  NonProd-AppSubnet-AddressPrefix          = var.NonProd-AppSubnet-AddressPrefix
-  NonProd-DataSubnet-AddressPrefix          = var.NonProd-DataSubnet-AddressPrefix
+  source                           = "../Spoke-NonProd/"
+  NonProd-ResourceGroupLocation    = var.NonProd-ResourceGroupLocation
+  NonProd-VNet-AddressSpace        = var.NonProd-VNet-AddressSpace
+  NonProd-WebSubnet-AddressPrefix  = var.NonProd-WebSubnet-AddressPrefix
+  NonProd-AppSubnet-AddressPrefix  = var.NonProd-AppSubnet-AddressPrefix
+  NonProd-DataSubnet-AddressPrefix = var.NonProd-DataSubnet-AddressPrefix
 }
 
 
 module "VNET-Peering" {
-  source = "../VNetPeering"
-  HubVNet-RGName = module.vnets-SharedServices.SharedServices-RGName
-  HubVNet-Name = module.vnets-SharedServices.SharedServices-VNet-Name
-  HubNetwork-ID = module.vnets-SharedServices.SharedServices-VNet-ID
-  HubVNet-AllowVNetAccess = var.HubVNet-AllowVNetAccess
+  source                        = "../VNetPeering"
+  HubVNet-RGName                = module.vnets-SharedServices.SharedServices-RGName
+  HubVNet-Name                  = module.vnets-SharedServices.SharedServices-VNet-Name
+  HubNetwork-ID                 = module.vnets-SharedServices.SharedServices-VNet-ID
+  HubVNet-AllowVNetAccess       = var.HubVNet-AllowVNetAccess
   HubVNet-AllowForwardedTraffic = var.HubVNet-AllowForwardedTraffic
-  HubVNet-AllowGatewayTransit = var.HubVNet-AllowGatewayTransit
+  HubVNet-AllowGatewayTransit   = var.HubVNet-AllowGatewayTransit
   // depends_on = [
   //   module.vnets-SharedServices, module.vnets-Prod
   // ]
 
-  ProdVNet-RGName = module.vnets-Prod.Prod-RGName
-  ProdVNet-Name = module.vnets-Prod.Prod-VNet-Name
-  ProdNetwork-ID = module.vnets-Prod.Prod-VNet-ID
-  ProdVNet-AllowVNetAccess = var.ProdVNet-AllowVNetAccess
+  ProdVNet-RGName                = module.vnets-Prod.Prod-RGName
+  ProdVNet-Name                  = module.vnets-Prod.Prod-VNet-Name
+  ProdNetwork-ID                 = module.vnets-Prod.Prod-VNet-ID
+  ProdVNet-AllowVNetAccess       = var.ProdVNet-AllowVNetAccess
   ProdVNet-AllowForwardedTraffic = var.ProdVNet-AllowForwardedTraffic
-  ProdVNet-AllowGatewayTransit = var.ProdVNet-AllowGatewayTransit
+  ProdVNet-AllowGatewayTransit   = var.ProdVNet-AllowGatewayTransit
 
-  NonProdVNet-RGName = module.vnets-NonProd.NonProd-RGName
-  NonProdVNet-Name = module.vnets-NonProd.NonProd-VNet-Name
-  NonProdNetwork-ID = module.vnets-NonProd.NonProd-VNet-ID
-  NonProdVNet-AllowVNetAccess = var.NonProdVNet-AllowVNetAccess
+  NonProdVNet-RGName                = module.vnets-NonProd.NonProd-RGName
+  NonProdVNet-Name                  = module.vnets-NonProd.NonProd-VNet-Name
+  NonProdNetwork-ID                 = module.vnets-NonProd.NonProd-VNet-ID
+  NonProdVNet-AllowVNetAccess       = var.NonProdVNet-AllowVNetAccess
   NonProdVNet-AllowForwardedTraffic = var.NonProdVNet-AllowForwardedTraffic
-  NonProdVNet-AllowGatewayTransit = var.NonProdVNet-AllowGatewayTransit
+  NonProdVNet-AllowGatewayTransit   = var.NonProdVNet-AllowGatewayTransit
 }

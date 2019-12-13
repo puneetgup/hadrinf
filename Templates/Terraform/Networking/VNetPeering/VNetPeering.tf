@@ -16,7 +16,7 @@ resource "azurerm_virtual_network_peering" "Prod-to-Hub-Peering" {
   allow_virtual_network_access = var.ProdVNet-AllowVNetAccess
   allow_forwarded_traffic      = var.ProdVNet-AllowForwardedTraffic
   allow_gateway_transit        = var.ProdVNet-AllowGatewayTransit
-  depends_on = [azurerm_virtual_network_peering.Hub-to-Prod-Peering]
+  depends_on                   = [azurerm_virtual_network_peering.Hub-to-Prod-Peering]
 }
 
 resource "azurerm_virtual_network_peering" "Hub-to-NonProd-Peering" {
@@ -27,7 +27,7 @@ resource "azurerm_virtual_network_peering" "Hub-to-NonProd-Peering" {
   allow_virtual_network_access = var.HubVNet-AllowVNetAccess
   allow_forwarded_traffic      = var.HubVNet-AllowForwardedTraffic
   allow_gateway_transit        = var.HubVNet-AllowGatewayTransit
-  depends_on = [azurerm_virtual_network_peering.Prod-to-Hub-Peering]
+  depends_on                   = [azurerm_virtual_network_peering.Prod-to-Hub-Peering]
 }
 
 resource "azurerm_virtual_network_peering" "NonProd-to-Hub-Peering" {
@@ -38,5 +38,5 @@ resource "azurerm_virtual_network_peering" "NonProd-to-Hub-Peering" {
   allow_virtual_network_access = var.NonProdVNet-AllowVNetAccess
   allow_forwarded_traffic      = var.NonProdVNet-AllowForwardedTraffic
   allow_gateway_transit        = var.NonProdVNet-AllowGatewayTransit
-  depends_on = [azurerm_virtual_network_peering.Hub-to-NonProd-Peering]
+  depends_on                   = [azurerm_virtual_network_peering.Hub-to-NonProd-Peering]
 }

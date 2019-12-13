@@ -2,7 +2,7 @@ resource "azurerm_public_ip" "Hub-ERGateway-PublicIP" {
   name                = "Hub-ERGW-PIP"
   location            = azurerm_resource_group.SharedServicesRG.location
   resource_group_name = azurerm_resource_group.SharedServicesRG.name
-  allocation_method = "Dynamic"
+  allocation_method   = "Dynamic"
 }
 
 // resource "azurerm_virtual_network_gateway" "Hub-ERGateway" {
