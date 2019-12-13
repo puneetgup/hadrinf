@@ -8,7 +8,7 @@ variable "HubVNet-Name" {
   description = "The Hub VNet Name (for peering 'from')."
 }
 
-variable "ProdNetwork-ID" {
+variable "HubNetwork-ID" {
   type = string
   description = "The Prod VNet ID (for peering 'to')."
 }
@@ -32,7 +32,7 @@ variable "HubVNet-AllowGatewayTransit" {
 
 variable "ProdVNet-RGName" {
   type = string
-  description = "The Resource Group nane that contains the Hub VNet object (since this is where the Peering object will be created)."
+  description = "The Resource Group nane that contains the Prod VNet object (since this is where the Peering object will be created)."
 }
 
 variable "ProdVNet-Name" {
@@ -40,7 +40,7 @@ variable "ProdVNet-Name" {
   description = "The Hub VNet Name (for peering 'from')."
 }
 
-variable "HubNetwork-ID" {
+variable "ProdNetwork-ID" {
   type = string
   description = "The Prod VNet ID (for peering 'to')."
 }
@@ -56,6 +56,38 @@ variable "ProdVNet-AllowForwardedTraffic" {
 }
 
 variable "ProdVNet-AllowGatewayTransit" {
+  type        = string
+  description = "If you have a virtual network gateway attached to this virtual network and want to allow traffic from the peered virtual network to flow through the gateway. "
+}
+
+
+
+variable "NonProdVNet-RGName" {
+  type = string
+  description = "The Resource Group nane that contains the NonProd VNet object (since this is where the Peering object will be created)."
+}
+
+variable "NonProdVNet-Name" {
+  type = string
+  description = "The Hub VNet Name (for peering 'from')."
+}
+
+variable "NonProdNetwork-ID" {
+  type = string
+  description = "The NonProd VNet ID (for peering 'to')."
+}
+
+variable "NonProdVNet-AllowVNetAccess" {
+  type        = string
+  description = "Enable communication between the two virtual networks."
+}
+
+variable "NonProdVNet-AllowForwardedTraffic" {
+  type        = string
+  description = "Allow traffic forwarded by a network virtual appliance in a virtual network (that didn't originate from the virtual network) to flow to this virtual network through a peering."
+}
+
+variable "NonProdVNet-AllowGatewayTransit" {
   type        = string
   description = "If you have a virtual network gateway attached to this virtual network and want to allow traffic from the peered virtual network to flow through the gateway. "
 }
