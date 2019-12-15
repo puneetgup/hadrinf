@@ -27,32 +27,32 @@ terraform {
 }
 
 module "ER-Circuit" {
-  source = "../../ExpressRoute/Circuit"
-  HubExpressRoute-RGName = var.HubExpressRoute-RGName
-  HubExpressRoute-Location = var.HubExpressRoute-Location
-  HubExpressRoute-ServiceProviderName = var.HubExpressRoute-ServiceProviderName
-  HubExpressRoute-PeeringLocation     = var.HubExpressRoute-PeeringLocation
-  HubExpressRoute-BandwidthInMBPS     = var.HubExpressRoute-BandwidthInMBPS
+  source                                 = "../../ExpressRoute/Circuit"
+  HubExpressRoute-RGName                 = var.HubExpressRoute-RGName
+  HubExpressRoute-Location               = var.HubExpressRoute-Location
+  HubExpressRoute-ServiceProviderName    = var.HubExpressRoute-ServiceProviderName
+  HubExpressRoute-PeeringLocation        = var.HubExpressRoute-PeeringLocation
+  HubExpressRoute-BandwidthInMBPS        = var.HubExpressRoute-BandwidthInMBPS
   HubExpressRoute-Tier                   = var.HubExpressRoute-Tier
   HubExpressRoute-Family                 = var.HubExpressRoute-Family
   HubExpressRoute-AllowClassicOperations = var.HubExpressRoute-AllowClassicOperations
 }
 
 module "ER-Connection" {
-  source = "../../ExpressRoute/Connection"
+  source                          = "../../ExpressRoute/Connection"
   HubExpressRoute-PeeringLocation = var.HubExpressRoute-PeeringLocation
-  ConnectionType = var.ConnectionType
-  RouteWeight = var.RouteWeight
-  EnableBGP = var.EnableBGP
-  ExpressRoute-GatewayBypass = var.ExpressRoute-GatewayBypass
-  UsePolicyBasedTrafficSelectors = var.UsePolicyBasedTrafficSelectors
+  ConnectionType                  = var.ConnectionType
+  RouteWeight                     = var.RouteWeight
+  EnableBGP                       = var.EnableBGP
+  ExpressRoute-GatewayBypass      = var.ExpressRoute-GatewayBypass
+  UsePolicyBasedTrafficSelectors  = var.UsePolicyBasedTrafficSelectors
 
-  Hub-ExpressRouteCircuit-Name = module.ER-Circuit.Hub-ExpressRouteCircuit-Name
-  Hub-ExpressRouteCircuit-RGName = module.ER-Circuit.Hub-ExpressRouteCircuit-RGName
-  Hub-ERGateway-Name = data.azurerm_virtual_network_gateway.HubExpressRoute-Gateway.name
+  Hub-ExpressRouteCircuit-Name    = module.ER-Circuit.Hub-ExpressRouteCircuit-Name
+  Hub-ExpressRouteCircuit-RGName  = module.ER-Circuit.Hub-ExpressRouteCircuit-RGName
+  Hub-ERGateway-Name              = data.azurerm_virtual_network_gateway.HubExpressRoute-Gateway.name
   HubExpressRoute-GatewayLocation = data.azurerm_virtual_network_gateway.HubExpressRoute-Gateway.location
-  Hub-ERGateway-RGName = data.azurerm_virtual_network_gateway.HubExpressRoute-Gateway.resource_group_name
+  Hub-ERGateway-RGName            = data.azurerm_virtual_network_gateway.HubExpressRoute-Gateway.resource_group_name
 
-  HubExpressRoute-GatewayID = data.azurerm_virtual_network_gateway.HubExpressRoute-Gateway.id
+  HubExpressRoute-GatewayID      = data.azurerm_virtual_network_gateway.HubExpressRoute-Gateway.id
   HubExpressRoute-ExpressRouteID = module.ER-Circuit.HubExpressRoute-ExpressRouteID
 }
