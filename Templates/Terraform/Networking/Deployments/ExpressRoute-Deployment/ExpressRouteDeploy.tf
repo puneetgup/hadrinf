@@ -56,3 +56,14 @@ module "ER-Connection" {
   HubExpressRoute-GatewayID      = data.azurerm_virtual_network_gateway.HubExpressRoute-Gateway.id
   HubExpressRoute-ExpressRouteID = module.ER-Circuit.HubExpressRoute-ExpressRouteID
 }
+
+module "ER-Peering" {
+  source                     = "../../ExpressRoute/Peering"
+  ExpressRoute-PeeringType   = "AzurePrivatePeering"
+  ExpressRoute-CircuitName   = module.ER-Circuit.Hub-ExpressRouteCircuit-Name
+  ExpressRoute-RGName        = module.ER-Circuit.Hub-ExpressRouteCircuit-RGName
+  PeerASN                    = var.PeerASN
+  PrimaryPeerAddressPrefix   = var.PrimaryPeerAddressPrefix
+  SecondaryPeerAddressPrefix = var.SecondaryPeerAddressPrefix
+  VLANID                     = var.VLANID
+}
