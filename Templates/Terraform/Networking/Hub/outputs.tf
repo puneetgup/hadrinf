@@ -15,5 +15,5 @@ output "Hub-ERGateway-Name" {
 }
 
 output "Hub-ERGateway-RGName" {
-  value = azurerm_virtual_network_gateway.Hub-ERGateway.RGName
+  value = azurerm_virtual_network_gateway.Hub-ERGateway.resource_group_name
 }
