@@ -34,9 +34,9 @@ resource "azurerm_network_security_rule" "WebSubnet-NSGRule_HTTPS" {
   resource_group_name         = azurerm_network_security_group.WebSubnet-NSG.resource_group_name
   network_security_group_name = azurerm_network_security_group.WebSubnet-NSG.name
 }
-resource "azurerm_network_security_rule" "AppSubnet-NSGRule_HTTP" {
+resource "azurerm_network_security_rule" "AppSubnet-NSGRule_HTTPS" {
   name                        = "HTTP_InBound"
-  priority                    = 110
+  priority                    = 100
   direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "*"
@@ -49,7 +49,7 @@ resource "azurerm_network_security_rule" "AppSubnet-NSGRule_HTTP" {
 }
 resource "azurerm_network_security_rule" "DataSubnet-NSGRule_SQL" {
   name                        = "HTTP_InBound"
-  priority                    = 120
+  priority                    = 100
   direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "*"
