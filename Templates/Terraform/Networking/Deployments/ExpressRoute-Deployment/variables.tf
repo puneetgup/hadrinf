@@ -1,24 +1,46 @@
-// variable "Location" {
-//   type        = string
-//   description = "The Azure location the deployment is going to (i.e. Canada Central)"
-// }
-
-// variable "ERLocation" {
-//   type        = string
-//   description = "The Azure Express Route location the deployment is going to (i.e. Canada Central)"
-// }
-
-variable "HubExpressRoute-GatewayLocation" {
-  type = string
-  description = ""
+variable "HubExpressRoute-RGName" {
+  type        = string
+  description = "This is the Resource Group name containing the ExpressRoute resources."
 }
 
+variable "HubExpressRoute-Location" {
+  type        = string
+  description = "The Azure location the deployment is going to (i.e. Canada Central)"
+}
 
-# Express Route Connection variables
+variable "HubExpressRoute-ServiceProviderName" {
+  type        = string
+  description = "The name of the ExpressRoute Service Provider."
+}
+
 variable "HubExpressRoute-PeeringLocation" {
   type        = string
   description = "The name of the peering location and not the Azure resource location."
 }
+
+variable "HubExpressRoute-BandwidthInMBPS" {
+  type        = string
+  description = "Express Route circuit speed."
+}
+
+variable "HubExpressRoute-Tier" {
+  type        = string
+  description = "The service tier. Possible values are Standard or Premium."
+}
+
+variable "HubExpressRoute-Family" {
+  type        = string
+  description = "The billing mode for bandwidth. Possible values are MeteredData or UnlimitedData."
+}
+
+variable "HubExpressRoute-AllowClassicOperations" {
+  type        = string
+  description = "Allow the circuit to interact with classic (RDFE) resources. Use this setting if you plan to connect to resources deployed in the classic model."
+}
+
+
+
+
 variable "ConnectionType" {
   type = string
   description = "(Required) The type of connection. Valid options are IPsec (Site-to-Site), ExpressRoute (ExpressRoute), and Vnet2Vnet (VNet-to-VNet). "
@@ -38,32 +60,4 @@ variable "ExpressRoute-GatewayBypass" {
 variable "UsePolicyBasedTrafficSelectors" {
   type = string
   description = "(Optional) If true, policy-based traffic selectors are enabled for this connection. Enabling policy-based traffic selectors requires an ipsec_policy block. Defaults to false."
-}
-
-
-
-variable "Hub-ExpressRouteCircuit-Name" {
-    type = string
-    description = ""
-}
-variable "Hub-ExpressRouteCircuit-RGName" {
-    type = string
-    description = ""
-}
-variable "Hub-ERGateway-Name" {
-    type = string
-    description = ""
-}
-variable "Hub-ERGateway-RGName" {
-    type = string
-    description = ""
-}
-
-variable "HubExpressRoute-GatewayID" {
-    type = string
-    description = ""
-}
-variable "HubExpressRoute-ExpressRouteID" {
-    type = string
-    description = ""
 }

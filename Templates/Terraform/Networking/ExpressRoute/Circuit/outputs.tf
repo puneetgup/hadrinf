@@ -1,10 +1,10 @@
-output "HubExpressRoute-ID" {
+output "HubExpressRoute-ExpressRouteID" {
   value = azurerm_express_route_circuit.HubExpressRoute.id
 }
-output "HubExpressRoute-Name" {
+output "Hub-ExpressRouteCircuit-Name" {
   value = azurerm_express_route_circuit.HubExpressRoute.name
 }
-output "HubExpressRoute-RGName" {
+output "Hub-ExpressRouteCircuit-RGName" {
   value = azurerm_express_route_circuit.HubExpressRoute.resource_group_name
 }
 
