@@ -1,7 +1,8 @@
 SharedServicesResourceGroupLocation                 = "WestUS"
 SharedServices-VNet-AddressSpace                    = "10.0.0.0/16"
 SharedServices-GatewaySubnet-AddressPrefix          = "10.0.1.0/27"
-SharedServices-DomainControllerSubnet-AddressPrefix = "10.0.2.0/24"
+SharedServices-AzureFirewallSubnet-AddressPrefix    = "10.0.2.0/26"
+SharedServices-DomainControllerSubnet-AddressPrefix = "10.0.3.0/24"
 
 
 Prod-ResourceGroupLocation    = "EastUS"
@@ -30,6 +31,11 @@ NonProdVNet-AllowVNetAccess       = true
 NonProdVNet-AllowForwardedTraffic = true
 NonProdVNet-AllowGatewayTransit   = false
 
+EnableVPNGateway                  = false
 Hub-ERGateway-ActiveActiveEnabled = false
 Hub-ERGateway-BGPEnabled          = true
 Hub-ERGateway-SKU                 = "Standard"
+
+
+AFWPIP-AllocationMethod = "Static"
+AFWPIP-SKU              = "Standard"

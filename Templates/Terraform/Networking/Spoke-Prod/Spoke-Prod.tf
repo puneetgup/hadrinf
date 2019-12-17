@@ -61,6 +61,28 @@ resource "azurerm_network_security_rule" "DataSubnet-NSGRule_SQL" {
   network_security_group_name = azurerm_network_security_group.DataSubnet-NSG.name
 }
 
+// UDRs
+resource "azurerm_route_table" "AFW-RouteTable" {
+  name                = "AFW-RouteTable"
+  location            = azurerm_resource_group.Spoke-Prod-RG.location
+  resource_group_name = azurerm_resource_group.Spoke-Prod-RG.name
+}
+
+resource "azurerm_route" "AFW-Route" {
+  name                   = "AFW-Route"
+  resource_group_name    = azurerm_resource_group.Spoke-Prod-RG.name
+  route_table_name       = azurerm_route_table.AFW-RouteTable.name
+  address_prefix         = "0.0.0.0/0"
+  next_hop_type          = "VirtualAppliance"
+  next_hop_in_ip_address = data.azurerm_firewall.AFW.ip_configuration.0.private_ip_address
+}
+
+resource "azurerm_subnet_route_table_association" "example" {
+  subnet_id      = azurerm_subnet.WebSubnet.id
+  route_table_id = azurerm_route_table.AFW-RouteTable.id
+}
+
+
 resource "azurerm_virtual_network" "Prod-VNET" {
   name                = "Prod-VNET"
   location            = azurerm_resource_group.Spoke-Prod-RG.location
@@ -74,6 +96,7 @@ resource "azurerm_subnet" "WebSubnet" {
   resource_group_name       = azurerm_virtual_network.Prod-VNET.resource_group_name
   virtual_network_name      = azurerm_virtual_network.Prod-VNET.name
   network_security_group_id = azurerm_network_security_group.WebSubnet-NSG.id
+  route_table_id            = azurerm_route_table.AFW-RouteTable.id
 }
 resource "azurerm_subnet" "AppSubnet" {
   name                      = "AppSubnet"

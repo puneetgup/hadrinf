@@ -27,19 +27,24 @@ terraform {
 }
 
 module "vnets-SharedServices" {
-  source                                              = "../Hub/"
+  source                                              = "../../Hub/"
   SharedServicesResourceGroupLocation                 = var.SharedServicesResourceGroupLocation
   SharedServices-VNet-AddressSpace                    = var.SharedServices-VNet-AddressSpace
   SharedServices-GatewaySubnet-AddressPrefix          = var.SharedServices-GatewaySubnet-AddressPrefix
   SharedServices-DomainControllerSubnet-AddressPrefix = var.SharedServices-DomainControllerSubnet-AddressPrefix
+  SharedServices-AzureFirewallSubnet-AddressPrefix    = var.SharedServices-AzureFirewallSubnet-AddressPrefix
 
+  EnableVPNGateway                  = var.EnableVPNGateway
   Hub-ERGateway-ActiveActiveEnabled = var.Hub-ERGateway-ActiveActiveEnabled
   Hub-ERGateway-BGPEnabled          = var.Hub-ERGateway-BGPEnabled
   Hub-ERGateway-SKU                 = var.Hub-ERGateway-SKU
+
+  AFWPIP-AllocationMethod = var.AFWPIP-AllocationMethod
+  AFWPIP-SKU              = var.AFWPIP-SKU
 }
 
 module "vnets-Prod" {
-  source                        = "../Spoke-Prod/"
+  source                        = "../../Spoke-Prod/"
   Prod-ResourceGroupLocation    = var.Prod-ResourceGroupLocation
   Prod-VNet-AddressSpace        = var.Prod-VNet-AddressSpace
   Prod-WebSubnet-AddressPrefix  = var.Prod-WebSubnet-AddressPrefix
@@ -48,7 +53,7 @@ module "vnets-Prod" {
 }
 
 module "vnets-NonProd" {
-  source                           = "../Spoke-NonProd/"
+  source                           = "../../Spoke-NonProd/"
   NonProd-ResourceGroupLocation    = var.NonProd-ResourceGroupLocation
   NonProd-VNet-AddressSpace        = var.NonProd-VNet-AddressSpace
   NonProd-WebSubnet-AddressPrefix  = var.NonProd-WebSubnet-AddressPrefix
@@ -58,10 +63,10 @@ module "vnets-NonProd" {
 
 
 module "VNET-Peering" {
-  source                        = "../VNetPeering"
-  HubVNet-RGName                = module.vnets-SharedServices.SharedServices-RGName
-  HubVNet-Name                  = module.vnets-SharedServices.SharedServices-VNet-Name
-  HubNetwork-ID                 = module.vnets-SharedServices.SharedServices-VNet-ID
+  source                        = "../../VNetPeering"
+  HubVNet-RGName                = module.vnets-SharedServices.SharedServices-RGName[0]
+  HubVNet-Name                  = module.vnets-SharedServices.SharedServices-VNet-Name[0]
+  HubNetwork-ID                 = module.vnets-SharedServices.SharedServices-VNet-ID[0]
   HubVNet-AllowVNetAccess       = var.HubVNet-AllowVNetAccess
   HubVNet-AllowForwardedTraffic = var.HubVNet-AllowForwardedTraffic
   HubVNet-AllowGatewayTransit   = var.HubVNet-AllowGatewayTransit

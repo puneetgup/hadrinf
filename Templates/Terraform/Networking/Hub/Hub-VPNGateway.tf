@@ -6,6 +6,8 @@ resource "azurerm_public_ip" "Hub-ERGateway-PublicIP" {
 }
 
 resource "azurerm_virtual_network_gateway" "Hub-ERGateway" {
+  count = var.EnableVPNGateway ? 1 : 0
+
   name                = "Hub-ERGW"
   location            = azurerm_resource_group.SharedServicesRG.location
   resource_group_name = azurerm_resource_group.SharedServicesRG.name

@@ -13,6 +13,11 @@ variable "SharedServices-GatewaySubnet-AddressPrefix" {
   description = "The address space (ie. 1.2.3.4/56) for the Gateway Subnet within the Shared Services VNet."
 }
 
+variable "SharedServices-AzureFirewallSubnet-AddressPrefix" {
+  type        = string
+  description = "The address space (ie. 1.2.3.4/56) for the Azure Firewall Subnet within the Shared Services VNet."
+}
+
 variable "SharedServices-DomainControllerSubnet-AddressPrefix" {
   type        = string
   description = "The address space (ie. 1.2.3.4/56) for the Domain Controller Subnet within the Shared Services VNet."
@@ -120,6 +125,10 @@ variable "NonProdVNet-AllowGatewayTransit" {
   description = "If you have a virtual network gateway attached to this virtual network and want to allow traffic from the peered virtual network to flow through the gateway. "
 }
 
+variable "EnableVPNGateway" {
+  type        = bool
+  description = "Control whether the VPN Gateway will be deployed or not."
+}
 variable "Hub-ERGateway-ActiveActiveEnabled" {
   type        = string
   description = "Only select Enable active-active mode if you are creating an active-active gateway configuration."
@@ -131,4 +140,13 @@ variable "Hub-ERGateway-BGPEnabled" {
 variable "Hub-ERGateway-SKU" {
   type        = string
   description = "Set the specific ExpressRoute Gateway SKU. Available options include: 'Standard', 'HighPerformance', or 'UltraPerformance'"
+}
+
+variable "AFWPIP-AllocationMethod" {
+  type        = string
+  description = "Options include 'Dynamic' or 'Static'."
+}
+variable "AFWPIP-SKU" {
+  type        = string
+  description = "Options are 'Basic' or 'Standard'."
 }

@@ -121,6 +121,13 @@ resource "azurerm_subnet" "GatewaySubnet" {
   virtual_network_name = azurerm_virtual_network.SharedServicesVNET.name
 }
 
+resource "azurerm_subnet" "AzureFirewallSubnet" {
+  name                 = "AzureFirewallSubnet"
+  address_prefix       = var.SharedServices-AzureFirewallSubnet-AddressPrefix
+  resource_group_name  = azurerm_virtual_network.SharedServicesVNET.resource_group_name
+  virtual_network_name = azurerm_virtual_network.SharedServicesVNET.name
+}
+
 resource "azurerm_subnet" "DomainControllerSubnet" {
   name                      = "DomainControllerSubnet"
   address_prefix            = var.SharedServices-DomainControllerSubnet-AddressPrefix
