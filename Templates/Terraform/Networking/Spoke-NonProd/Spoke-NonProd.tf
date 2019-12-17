@@ -1,6 +1,10 @@
 resource "azurerm_resource_group" "Spoke-NonProd-RG" {
   name     = "NonProdSpokeRG"
   location = var.NonProd-ResourceGroupLocation
+  tags = {
+    Environment = var.Environment
+    CostCenter  = var.CostCenter
+  }
 }
 
 # NOTE: Have to create the NSGs first (and in the same TF file as the Subnets, instead of in its own module), 
@@ -9,16 +13,28 @@ resource "azurerm_network_security_group" "WebSubnet-NSG" {
   name                = "WebSubnet-NSG"
   location            = azurerm_resource_group.Spoke-NonProd-RG.location
   resource_group_name = azurerm_resource_group.Spoke-NonProd-RG.name
+  tags = {
+    Environment = var.Environment
+    CostCenter  = var.CostCenter
+  }
 }
 resource "azurerm_network_security_group" "AppSubnet-NSG" {
   name                = "AppSubnet-NSG"
   location            = azurerm_resource_group.Spoke-NonProd-RG.location
   resource_group_name = azurerm_resource_group.Spoke-NonProd-RG.name
+  tags = {
+    Environment = var.Environment
+    CostCenter  = var.CostCenter
+  }
 }
 resource "azurerm_network_security_group" "DataSubnet-NSG" {
   name                = "DataSubnet-NSG"
   location            = azurerm_resource_group.Spoke-NonProd-RG.location
   resource_group_name = azurerm_resource_group.Spoke-NonProd-RG.name
+  tags = {
+    Environment = var.Environment
+    CostCenter  = var.CostCenter
+  }
 }
 
 resource "azurerm_network_security_rule" "WebSubnet-NSGRule_HTTPS" {
@@ -67,6 +83,10 @@ resource "azurerm_route_table" "AFW-RouteTable" {
   name                = "AFW-RouteTable"
   location            = azurerm_resource_group.Spoke-NonProd-RG.location
   resource_group_name = azurerm_resource_group.Spoke-NonProd-RG.name
+  tags = {
+    Environment = var.Environment
+    CostCenter  = var.CostCenter
+  }
 }
 
 resource "azurerm_route" "AFW-Route" {
@@ -90,6 +110,10 @@ resource "azurerm_virtual_network" "NonProd-VNET" {
   location            = azurerm_resource_group.Spoke-NonProd-RG.location
   resource_group_name = azurerm_resource_group.Spoke-NonProd-RG.name
   address_space       = [var.NonProd-VNet-AddressSpace]
+  tags = {
+    Environment = var.Environment
+    CostCenter  = var.CostCenter
+  }
 }
 
 resource "azurerm_subnet" "WebSubnet" {

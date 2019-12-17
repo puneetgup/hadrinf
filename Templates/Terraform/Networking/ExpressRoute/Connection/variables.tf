@@ -1,3 +1,12 @@
+variable "Environment" {
+  type        = string
+  description = "Environment tag."
+}
+variable "CostCenter" {
+  type        = string
+  description = "CostCenter tag."
+}
+
 // variable "Location" {
 //   type        = string
 //   description = "The Azure location the deployment is going to (i.e. Canada Central)"

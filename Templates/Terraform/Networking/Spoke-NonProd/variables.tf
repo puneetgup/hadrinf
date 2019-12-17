@@ -1,3 +1,12 @@
+variable "Environment" {
+  type        = string
+  description = "Environment tag."
+}
+variable "CostCenter" {
+  type        = string
+  description = "CostCenter tag."
+}
+
 variable "NonProd-ResourceGroupLocation" {
   type        = string
   description = "The location to deploy the Resource Group."

@@ -3,6 +3,10 @@ resource "azurerm_public_ip" "Hub-ERGateway-PublicIP" {
   location            = azurerm_resource_group.SharedServicesRG.location
   resource_group_name = azurerm_resource_group.SharedServicesRG.name
   allocation_method   = "Dynamic"
+  tags = {
+    Environment = var.Environment
+    CostCenter  = var.CostCenter
+  }
 }
 
 resource "azurerm_virtual_network_gateway" "Hub-ERGateway" {
@@ -23,4 +27,8 @@ resource "azurerm_virtual_network_gateway" "Hub-ERGateway" {
     subnet_id                     = azurerm_subnet.GatewaySubnet.id
   }
   depends_on = [azurerm_virtual_network.SharedServicesVNET, azurerm_public_ip.Hub-ERGateway-PublicIP]
+  tags = {
+    Environment = var.Environment
+    CostCenter  = var.CostCenter
+  }
 }

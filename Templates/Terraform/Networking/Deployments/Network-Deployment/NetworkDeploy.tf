@@ -27,7 +27,10 @@ terraform {
 }
 
 module "vnets-SharedServices" {
-  source                                              = "../../Hub/"
+  source      = "../../Hub/"
+  Environment = "SharedServices"
+  CostCenter  = "12345"
+
   SharedServicesResourceGroupLocation                 = var.SharedServicesResourceGroupLocation
   SharedServices-VNet-AddressSpace                    = var.SharedServices-VNet-AddressSpace
   SharedServices-GatewaySubnet-AddressPrefix          = var.SharedServices-GatewaySubnet-AddressPrefix
@@ -44,7 +47,10 @@ module "vnets-SharedServices" {
 }
 
 module "vnets-Prod" {
-  source                        = "../../Spoke-Prod/"
+  source      = "../../Spoke-Prod/"
+  Environment = "Production"
+  CostCenter  = "67890"
+
   Prod-ResourceGroupLocation    = var.Prod-ResourceGroupLocation
   Prod-VNet-AddressSpace        = var.Prod-VNet-AddressSpace
   Prod-WebSubnet-AddressPrefix  = var.Prod-WebSubnet-AddressPrefix
@@ -53,7 +59,10 @@ module "vnets-Prod" {
 }
 
 module "vnets-NonProd" {
-  source                           = "../../Spoke-NonProd/"
+  source      = "../../Spoke-NonProd/"
+  Environment = "NonProd"
+  CostCenter  = "13579"
+
   NonProd-ResourceGroupLocation    = var.NonProd-ResourceGroupLocation
   NonProd-VNet-AddressSpace        = var.NonProd-VNet-AddressSpace
   NonProd-WebSubnet-AddressPrefix  = var.NonProd-WebSubnet-AddressPrefix

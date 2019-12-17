@@ -1,3 +1,12 @@
+variable "Environment" {
+  type        = string
+  description = "Environment tag."
+}
+variable "CostCenter" {
+  type        = string
+  description = "CostCenter tag."
+}
+
 variable "ExpressRoute-PeeringType" {
   type        = string
   description = "The type of peering that will be used. Options include: 'AzurePrivatePeering', 'AzurePublicPeering ', and 'MicrosoftPeering'."

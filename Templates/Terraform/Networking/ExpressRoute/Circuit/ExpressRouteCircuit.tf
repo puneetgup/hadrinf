@@ -10,4 +10,8 @@ resource "azurerm_express_route_circuit" "HubExpressRoute" {
     family = var.HubExpressRoute-Family
   }
   allow_classic_operations = var.HubExpressRoute-AllowClassicOperations
+  tags = {
+    Environment = var.Environment
+    CostCenter  = var.CostCenter
+  }
 }

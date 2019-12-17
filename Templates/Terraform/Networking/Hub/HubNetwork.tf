@@ -1,6 +1,10 @@
 resource "azurerm_resource_group" "SharedServicesRG" {
   name     = "SharedServicesRG"
   location = var.SharedServicesResourceGroupLocation
+  tags = {
+    Environment = var.Environment
+    CostCenter  = var.CostCenter
+  }
 }
 
 # NOTE: Have to create the NSGs first (and in the same TF file as the Subnets, instead of in its own module), 
@@ -9,6 +13,10 @@ resource "azurerm_network_security_group" "DomainControllerSubnetNSG" {
   name                = "DomainControllerSubnetNSG"
   location            = azurerm_resource_group.SharedServicesRG.location
   resource_group_name = azurerm_resource_group.SharedServicesRG.name
+  tags = {
+    Environment = var.Environment
+    CostCenter  = var.CostCenter
+  }
 }
 
 resource "azurerm_network_security_rule" "DomainControllerNSGRule_DNS" {
@@ -112,6 +120,10 @@ resource "azurerm_virtual_network" "SharedServicesVNET" {
   location            = azurerm_resource_group.SharedServicesRG.location
   resource_group_name = azurerm_resource_group.SharedServicesRG.name
   address_space       = [var.SharedServices-VNet-AddressSpace]
+  tags = {
+    Environment = var.Environment
+    CostCenter  = var.CostCenter
+  }
 }
 
 resource "azurerm_subnet" "GatewaySubnet" {

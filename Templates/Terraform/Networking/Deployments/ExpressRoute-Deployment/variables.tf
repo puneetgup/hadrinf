@@ -1,3 +1,12 @@
+variable "Environment" {
+  type        = string
+  description = "Environment tag."
+}
+variable "CostCenter" {
+  type        = string
+  description = "CostCenter tag."
+}
+
 variable "HubExpressRoute-RGName" {
   type        = string
   description = "This is the Resource Group name containing the ExpressRoute resources."

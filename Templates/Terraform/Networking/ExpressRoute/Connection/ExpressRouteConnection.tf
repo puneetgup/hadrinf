@@ -11,4 +11,8 @@ resource "azurerm_virtual_network_gateway_connection" "ExpressRouteConnection" {
 
   virtual_network_gateway_id = var.HubExpressRoute-GatewayID
   express_route_circuit_id   = var.HubExpressRoute-ExpressRouteID
+  tags = {
+    Environment = var.Environment
+    CostCenter  = var.CostCenter
+  }
 }
