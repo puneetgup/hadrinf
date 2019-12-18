@@ -1,11 +1,11 @@
-variable "Environment" {
-  type        = string
-  description = "Environment tag."
-}
-variable "CostCenter" {
-  type        = string
-  description = "CostCenter tag."
-}
+// variable "Environment" {
+//   type        = string
+//   description = "Environment tag."
+// }
+// variable "CostCenter" {
+//   type        = string
+//   description = "CostCenter tag."
+// }
 
 variable "ExpressRoute-PeeringType" {
   type        = string
