@@ -19,9 +19,9 @@ SharedServices-DomainControllerSubnet-AddressPrefix = "10.0.3.0/24"
 // NonProd-DataSubnet-AddressPrefix = "172.16.3.0/24"
 
 
-HubVNet-AllowVNetAccess       = true
-HubVNet-AllowForwardedTraffic = true
-HubVNet-AllowGatewayTransit   = true
+// HubVNet-AllowVNetAccess       = true
+// HubVNet-AllowForwardedTraffic = true
+// HubVNet-AllowGatewayTransit   = true
 
 // ProdVNet-AllowVNetAccess       = true
 // ProdVNet-AllowForwardedTraffic = true
@@ -31,8 +31,9 @@ HubVNet-AllowGatewayTransit   = true
 // NonProdVNet-AllowForwardedTraffic = true
 // NonProdVNet-AllowGatewayTransit   = false
 
-EnableVPNGateway = true
-EnableERGateway  = true
+EnableVPNGateway = false
+EnableERGateway  = false
+EnableAFW  = false
 
 Hub-VPNGateway-ActiveActiveEnabled = false
 Hub-ERGateway-ActiveActiveEnabled  = false

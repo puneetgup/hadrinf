@@ -1,4 +1,7 @@
 resource "azurerm_public_ip" "Hub-ERGateway-PublicIP" {
+  # Can't change PublicIP to variable creation, and include it as a depends_on for the ER Gateway object. Terraform error/bug.
+  // count = var.EnableERGateway ? 1 : 0
+  
   name                = "Hub-ERGW-PIP"
   location            = azurerm_resource_group.SharedServicesRG.location
   resource_group_name = azurerm_resource_group.SharedServicesRG.name

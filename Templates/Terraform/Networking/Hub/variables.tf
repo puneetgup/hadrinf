@@ -40,6 +40,10 @@ variable "EnableERGateway" {
   type        = bool
   description = "Control whether the Express Route Gateway will be deployed or not."
 }
+variable "EnableAFW" {
+  type        = bool
+  description = "Control whether the Azure Firewall will be deployed or not."
+}
 
 variable "Hub-VPNGateway-ActiveActiveEnabled" {
   type        = string

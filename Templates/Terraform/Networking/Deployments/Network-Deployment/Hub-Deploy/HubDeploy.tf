@@ -39,6 +39,7 @@ module "vnets-SharedServices" {
 
   EnableVPNGateway = var.EnableVPNGateway
   EnableERGateway  = var.EnableERGateway
+  EnableAFW  = var.EnableAFW
 
   Hub-VPNGateway-ActiveActiveEnabled = var.Hub-VPNGateway-ActiveActiveEnabled
   Hub-ERGateway-ActiveActiveEnabled  = var.Hub-ERGateway-ActiveActiveEnabled
