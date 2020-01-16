@@ -1,4 +1,4 @@
-# High Availability - Disaster Recovery Guidance using practical real life scenarios
+# High Availability - Disaster Recovery Guidance 
 ### Design for High Availability
 Designing for High Availability focuses on ensuring that the Azure Solution you are building and deploying is available to withstand network, hardware and software failures to meet the uptime requirements for your solution
 ### Design for Disaster Recovery
